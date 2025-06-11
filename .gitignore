@@ -1,0 +1,43 @@
+# Virtual environments
+env/
+venv/
+*.env
+
+# Temporary files
+__pycache__/
+*.pyc
+
+# Log files
+*.log
+
+# Jupyter Notebooks
+*.ipynb_checkpoints/
+
+# Data files
+*.csv
+*.pkl
+*.db
+
+# ClickHouse data
+data/mart/user_item_interactions_delta/
+data/als/model/
+data/als/user_recommendations/
+data/bpr/model/
+data/bpr/user_recommendations/
+data/feature_store/user_features_delta/
+data/feature_store/item_features_delta/
+data/ab_test/
+
+# Reports and visualizations
+reports/
+visualizations/
+
+# Dependency files
+requirements.txt
+
+# Other
+*.ipynb
+*.html
+*.png
+*.jpg
+*.tmp

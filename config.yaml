@@ -1,0 +1,115 @@
+# Configuration for the E-commerce Personalization Engine Project
+
+# 1. Data Paths
+# Paths for raw data, processed data (marts), and model artifacts.
+
+data_paths:
+  # Base directory for the synthetic data stream
+  synthetic_stream_base: "./synthetic_data_stream"
+  
+  # Directory for static data files (users, products)
+  static_data: "./synthetic_data_stream/static"
+  
+  # Directory for raw, time-partitioned data (events, orders)
+  raw_data: "./synthetic_data_stream/raw"
+  
+  # Base directory for processed data marts and feature stores
+  mart_base: "./data/mart"
+  
+  # Path to the main user-item interaction data mart
+  interactions_mart: "./data/mart/user_item_interactions_delta"
+  
+  # Path to the enriched interaction data mart (with temporal features)
+  interactions_enriched_mart: "./data/mart/user_item_interactions_enriched"
+  
+  # Path to user and item embeddings
+  user_embeddings: "./data/mart/user_embeddings_delta"
+  
+  # Paths for user/item ID to index mappings
+  user_mapping: "./data/mart/user_mapping"
+  item_mapping: "./data/mart/item_mapping"
+
+# 2. Feature Store Paths
+
+feature_store:
+  base_path: "./data/feature_store"
+  user_features: "./data/feature_store/user_features_delta"
+  item_features: "./data/feature_store/item_features_delta"
+
+# 3. Model & Recommendation Paths
+
+models:
+  # Configuration for the 'ALS_v1' model (Baseline)
+  als_v1:
+    model_path: "./data/als/model"
+    recs_path: "./data/als/user_recommendations"
+  
+  # Configuration for the 'BPR_v1' model (Test Variant)
+  bpr_v1:
+    model_path: "./data/bpr/model"
+    recs_path: "./data/bpr/user_recommendations"
+
+# 4. Evaluation and Monitoring Paths
+
+logging_paths:
+  # Directory for offline evaluation results (metrics, charts)
+  offline_metrics: "./offline_metrics_logs"
+  
+  # Directory for replay validation results
+  replay_validation: "./replay_validation_logs"
+  
+  # Directory for data drift and quality reports
+  monitoring: "./monitoring_reports"
+  
+  # Directory for A/B testing results
+  ab_test: "./data/ab_test"
+
+# 5. Model Hyperparameters
+# Parameters for training different models.
+
+hyperparameters:
+  # General recommendation parameters
+  top_k: 10
+  
+  # Word2Vec for user embeddings
+  word2vec:
+    vector_size: 100
+    window_size: 5
+    min_count: 5
+    
+  # ALS model parameters
+  als:
+    # Baseline model: 'ALS_v1'
+    v1:
+      rank: 10
+      maxIter: 5
+      regParam: 0.1
+      alpha: 40.0
+      seed: 42
+    
+    # Test variant model: 'BPR_v1'
+    v2:
+      rank: 20
+      maxIter: 10
+      regParam: 0.05
+      alpha: 40.0
+      seed: 43
+      
+# 6. Experiment Parameters
+# Settings for validation and testing scripts.
+
+experiment_params:
+  # Replay validation settings
+  replay_validation:
+    batch_size_days: 30
+    min_interactions: 2
+    min_users_for_training: 100
+    
+  # A/B test simulation settings
+  ab_test:
+    click_probability: 0.3
+    purchase_probability: 0.2
+    group_split:
+      control: 0.4
+      baseline: 0.4
+      new_model: 0.2

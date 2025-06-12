@@ -170,8 +170,9 @@ source venv/bin/activate
 Install the required dependencies:
 
 
+```
 pip install -r requirements.txt
-
+```
 
 
 **6. How to Run the Pipeline**

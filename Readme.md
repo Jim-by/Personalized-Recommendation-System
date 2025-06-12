@@ -151,10 +151,18 @@ Create and activate a virtual environment (recommended):
 
 
 python -m venv venv
+
 *On Windows*
+
+```
 .\venv\Scripts\activate
+```
+
 *On macOS/Linux*
+
+```
 source venv/bin/activate
+```
 
 
 
